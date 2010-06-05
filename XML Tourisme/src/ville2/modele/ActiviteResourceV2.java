@@ -5,7 +5,7 @@
 
 package ville2.modele;
 
-import ville1.modele.*;
+
 
 /**
  *

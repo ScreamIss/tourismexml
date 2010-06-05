@@ -22,7 +22,7 @@ public class ServerVille1 {
         // Lui attacher une ressource
 //        composantServeur.getDefaultHost().attach("/produits/{id}", ProduitResource.class);
         
-        composantServeur.getDefaultHost().attach("/xml", ActiviteResourceV1.class);
+        composantServeur.getDefaultHost().attach("/xml/{libelle}", ActiviteResourceV1.class);
         // Demarrer le composant (et donc le serveur)
         composantServeur.start();
 
