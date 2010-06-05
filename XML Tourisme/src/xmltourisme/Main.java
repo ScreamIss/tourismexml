@@ -7,7 +7,7 @@ package xmltourisme;
 
 /**
  *
- * @author Guillaume
+ * @author Adrien
  */
 public class Main {
 
