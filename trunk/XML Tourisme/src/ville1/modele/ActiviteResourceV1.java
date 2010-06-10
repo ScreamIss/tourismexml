@@ -69,7 +69,7 @@ public class ActiviteResourceV1 extends ServerResource {
                 root.setAttribute("type", activite.getType());
                 //A VERIFIER
                 root.setAttribute("placesLibres", "oui");
-                if (ActiviteV1.estLibre(activite.getLibelle())) {
+                if (!ActiviteV1.estLibre(activite.getLibelle())) {
                     root.setAttribute("placesLibres", "non");
                 }
 

@@ -54,9 +54,9 @@ class ActiviteV1 {
         ActiviteV1 result = null;
         Connection connection = DatabaseV1.getConnection();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM produit WHERE no_produit=" + libelle);
+        ResultSet rs = stmt.executeQuery("SELECT * FROM activite WHERE ACT_Libelle ='" + libelle + "'");
         if (rs.next()) {
-            result = new ActiviteV1(rs.getString("libelle"), rs.getString("type"), rs.getInt("NbPlaceMax"));
+            result = new ActiviteV1(rs.getString("ACT_Libelle"), rs.getString("ACT_Type"), rs.getInt("ACT_NbPlaceMax"));
         }
         rs.close();
         stmt.close();
@@ -65,14 +65,19 @@ class ActiviteV1 {
     }
 
     public static boolean estLibre(String libelle) throws SQLException {
-        
+
         boolean result = true;
         Connection connection = DatabaseV1.getConnection();
         Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT PlaceRest FROM reservation WHERE libelle=" + libelle);
-        if(rs.getInt("PlaceRest")==0){
-            result = false;
+        ResultSet rs = stmt.executeQuery("SELECT RES_PlaceRest FROM reservation WHERE RES_Libelle = '" + libelle + "'");
+        if (rs.next()) {
+            if (rs.getInt(1) == 0) {
+                result = false;
+            }
         }
+        rs.close();
+        stmt.close();
+        connection.close();
         return result;
 
     }
