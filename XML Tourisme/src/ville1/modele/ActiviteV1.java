@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -62,6 +64,21 @@ class ActiviteV1 {
         stmt.close();
         connection.close();
         return result;
+    }
+
+
+        public static List<ActiviteV1> getAll() throws SQLException {
+        List<ActiviteV1> listActivite = new ArrayList<ActiviteV1>();
+        Connection connection = DatabaseV1.getConnection();
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM activite");
+        while (rs.next()) {
+            listActivite.add(new ActiviteV1(rs.getString("ACT_Libelle"), rs.getString("ACT_Type"), rs.getInt("ACT_NbPlaceMax")));
+        }
+        rs.close();
+        stmt.close();
+        connection.close();
+        return listActivite;
     }
 
     public static boolean estLibre(String libelle) throws SQLException {

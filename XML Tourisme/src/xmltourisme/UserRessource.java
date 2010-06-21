@@ -23,7 +23,7 @@ public class UserRessource {
 
 
     public static void main(String[] args) throws IOException{
-        ClientResource resource = new ClientResource("http://localhost:8182/xml/manegedelire");
+        ClientResource resource = new ClientResource("http://localhost:8182/xml/GRANDREX");
         
 //Récupère le XML en DomRepresentation
         Representation r = resource.get(MediaType.TEXT_XML);
