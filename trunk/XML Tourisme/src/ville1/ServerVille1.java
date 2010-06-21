@@ -6,7 +6,7 @@ package ville1;
 
 import org.restlet.Component;
 import org.restlet.data.Protocol;
-import ville1.modele.ActiviteResourceV1;
+import ville1.modele.*;
 
 /**
  *
@@ -21,7 +21,7 @@ public class ServerVille1 {
         composantServeur.getServers().add(Protocol.HTTP, 8182);
         // Lui attacher une ressource
 //        composantServeur.getDefaultHost().attach("/produits/{id}", ProduitResource.class);
-        
+        composantServeur.getDefaultHost().attach("/xml/activites/", ActivitesResourceV1.class);
         composantServeur.getDefaultHost().attach("/xml/{libelle}", ActiviteResourceV1.class);
         // Demarrer le composant (et donc le serveur)
         composantServeur.start();
